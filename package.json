@@ -6,6 +6,7 @@
   "homepage": "https://github.com/kanzitelli/rn-starter",
   "private": false,
   "scripts": {
+    "mockedApi": "cd json-mock-api && npm start",
     "android": "npx react-native run-android",
     "android:release": "yarn android --variant release",
     "android:adb": "adb reverse tcp:8081 tcp:8081",
