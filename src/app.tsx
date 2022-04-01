@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {StatusBar, useColorScheme} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 
@@ -10,14 +10,6 @@ export const AppNavigator = (): JSX.Element => {
   useColorScheme();
   const {nav} = useServices();
 
-  console.log('nav :>> ', nav);
-
-  useEffect(() => {
-    (async () => {
-      const neco = await fetch('https://jsonplaceholder.typicode.com/users');
-      console.log('neco', await neco.json());
-    })();
-  }, []);
   return (
     <>
       <StatusBar barStyle={getThemeStatusBarStyle()} />
