@@ -38,7 +38,7 @@ export const Main: React.FC = observer(() => {
                   <MovieCardItem
                     key={`movieId-${movie.id}`}
                     movie={movie}
-                    // onPress={() => nav.push('MovieDetail', {movieId: movie.id})}
+                    onPress={() => nav.push('MovieDetail', {movieId: movie.id})}
                   />
                 ))}
               </Carousel>

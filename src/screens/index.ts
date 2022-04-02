@@ -4,17 +4,19 @@ import {Main} from './main';
 import {Settings} from './settings';
 import {genRootNavigator, genStackNavigator, genTabNavigator} from '../services/navigation/help';
 import {services} from '../services';
+import {MovieDetail} from './movie-detail';
 
 // Describe your screens here
 export type Tabs = 'Main' | 'Settings';
 export type Modal = 'ExampleModal';
-export type Screen = 'Main' | 'Settings';
+export type Screen = 'Main' | 'MovieDetail' | 'Settings';
 
 export type ModalProps = {
   ExampleModal: undefined;
 };
 export type ScreenProps = {
   Main: undefined;
+  MovieDetail: {movieId: number};
   Example: undefined;
   Settings: undefined;
 } & ModalProps;
@@ -30,6 +32,13 @@ const screens: ScreenLayouts = {
       title: t.do('home.title'),
     }),
   },
+  MovieDetail: {
+    name: 'MovieDetail',
+    component: MovieDetail,
+    options: () => ({
+      title: t.do('movieDetail.title'),
+    }),
+  },
   Settings: {
     name: 'Settings',
     component: Settings,
@@ -38,7 +47,7 @@ const screens: ScreenLayouts = {
     }),
   },
 };
-const HomeStack = () => genStackNavigator([screens.Main]);
+const HomeStack = () => genStackNavigator([screens.Main, screens.MovieDetail]);
 const SettingsStack = () => genStackNavigator([screens.Settings]);
 const ExampleModalStack = () => genStackNavigator([screens.Main]);
 
