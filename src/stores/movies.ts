@@ -3,9 +3,13 @@ import {hydrateStore, makePersistable} from 'mobx-persist-store';
 
 export class Movies implements IStore {
   carousels = [] as CarouselsWithMovies;
-
   setCarousels = (items: CarouselsWithMovies) => {
     this.carousels = items;
+  };
+
+  currentMovieDetail = {} as Movie;
+  setCurrentMovieDetail = (item: Movie) => {
+    this.currentMovieDetail = item;
   };
 
   loading = false;

@@ -8,6 +8,15 @@ export const en = {
   home: {
     title: 'Home',
   },
+  movieDetail: {
+    title: 'Movie Detail',
+    emptyDetail: 'No movie detail available',
+    directing: 'Directing',
+    durationUnit: 'min',
+    actors: 'Actors',
+    genres: 'Genres',
+    plot: 'Plot',
+  },
   helloWorld: 'Hello World',
 };
 
@@ -20,6 +29,15 @@ export const cz = {
   },
   home: {
     title: 'Domů',
+  },
+  movieDetail: {
+    title: 'Detail filmu',
+    emptyDetail: 'Detail filmu není k dispozici',
+    directing: 'Režie',
+    durationUnit: 'min',
+    actors: 'Herci',
+    genres: 'Žánry',
+    plot: 'Obsah',
   },
   helloWorld: 'Ahoj světe',
 };
