@@ -2,9 +2,11 @@ import React from 'react';
 
 import './_hydration';
 import {UIStore} from './ui';
+import {Movies} from './movies';
 
 export const stores = {
   ui: new UIStore(),
+  movies: new Movies(),
 };
 type ContextStores = typeof stores;
 

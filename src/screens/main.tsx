@@ -9,7 +9,21 @@ import {useStores} from '../stores';
 
 export const Main: React.FC = observer(() => {
   const {nav, t, api} = useServices();
-  const {} = useStores();
+  const {movies} = useStores();
+
+  const getCarousels = useCallback(async () => {
+    try {
+      await api.movies.getCarousels();
+    } catch (e) {
+      Alert.alert(t.do('general.error'), t.do('general.errors.fetchError'));
+    }
+  }, [api.movies, t]);
+
+  useFocusEffect(
+    useCallback(() => {
+      getCarousels();
+    }, [getCarousels]),
+  );
 
   return (
     <View flex bg-bgColor>
