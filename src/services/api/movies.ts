@@ -12,4 +12,16 @@ export class MoviesApi {
     movies.setCarousels(json);
     movies.setLoading(false);
   };
+
+  getMovieDetail = async (id: number): PVoid => {
+    const {movies} = stores;
+
+    movies.setLoading(true);
+
+    const res = await fetch(`http://localhost:3000/movies/${id}`);
+    const json: Movie = await res.json();
+
+    movies.setCurrentMovieDetail(json);
+    movies.setLoading(false);
+  };
 }
