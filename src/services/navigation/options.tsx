@@ -31,11 +31,11 @@ export const tabBarDefaultOptions = (routeName: string): BottomTabNavigationOpti
 
 const getIconName = (routeName: string, focused: boolean): string => {
   if (routeName === 'MainNavigator') {
-    return focused ? 'newspaper' : 'newspaper-outline';
+    return focused ? 'home' : 'home-outline';
   }
-  if (routeName === 'ExampleNavigator') {
-    return focused ? 'construct' : 'construct-outline';
-  }
+  // if (routeName === 'ExampleNavigator') {
+  //   return focused ? 'construct' : 'construct-outline';
+  // }
   if (routeName === 'SettingsNavigator') {
     return focused ? 'cog' : 'cog-outline';
   }
