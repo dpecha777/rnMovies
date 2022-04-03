@@ -22,6 +22,7 @@ export const en = {
   settings: {
     title: 'Settings',
     ui: {
+      title: 'UI',
       appearance: 'Appearance',
       language: 'Language',
       uiNote: 'Changing UI options will reload the app',
