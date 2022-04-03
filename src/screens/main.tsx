@@ -8,6 +8,8 @@ import {useServices} from '../services';
 import {useStores} from '../stores';
 import {Section} from '../components/section';
 import {MovieCardItem} from '../components/movie-card-item';
+import LoadingScreen from '../components/LoadingScreen';
+import RefreshControl from '../components/RefreshControl';
 
 export const Main: React.FC = observer(() => {
   const {nav, t, api} = useServices();
@@ -27,9 +29,16 @@ export const Main: React.FC = observer(() => {
     }, [getCarousels]),
   );
 
+  if (movies.loading) {
+    return <LoadingScreen />;
+  }
+
   return (
     <View flex bg-bgColor>
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        refreshControl={<RefreshControl refreshing={movies.loading} onRefresh={getCarousels} />}
+      >
         <View padding-s4>
           {movies.carousels.map((carousel, index) => (
             <Section key={`${carousel.title}${index}`} title={carousel.title}>

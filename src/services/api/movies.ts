@@ -13,6 +13,10 @@ export class MoviesApi {
     movies.setLoading(true);
 
     const res = await fetch(url + '/carousels');
+    if (!res.ok) {
+      movies.setLoading(false);
+      throw new Error('Failed to fetch carousels');
+    }
     const json: CarouselsWithMovies = await res.json();
 
     movies.setCarousels(json);
@@ -23,8 +27,14 @@ export class MoviesApi {
     const {movies} = stores;
 
     movies.setLoading(true);
+    movies.setCurrentMovieDetail(null);
 
     const res = await fetch(url + `/movies/${id}`);
+    if (!res.ok) {
+      movies.setCurrentMovieDetail(null);
+      movies.setLoading(false);
+      throw new Error('Failed to fetch movie detail');
+    }
     const json: Movie = await res.json();
 
     movies.setCurrentMovieDetail(json);

@@ -2,10 +2,12 @@ import React, {useCallback, useEffect} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {ScreenProps} from '.';
 import {observer} from 'mobx-react';
-import {Colors, Image, LoaderScreen, Text, View} from 'react-native-ui-lib';
+import {Colors, Image, Text, View} from 'react-native-ui-lib';
 import {ScrollView} from 'react-native';
 import {useServices} from '../services';
 import {useStores} from '../stores';
+import LoadingScreen from '../components/LoadingScreen';
+import RefreshControl from '../components/RefreshControl';
 
 type Props = NativeStackScreenProps<ScreenProps, 'MovieDetail'>;
 
@@ -26,38 +28,37 @@ export const MovieDetail: React.FC<Props> = observer(({route}) => {
   }, [getData]);
 
   if (movies.loading) {
-    return <LoaderScreen color={Colors.primary} />;
-  }
-
-  if (!currentMovieDetail) {
-    return (
-      <View flex bg-bgColor>
-        <ScrollView contentInsetAdjustmentBehavior="automatic">
-          <View padding-s4>
-            <Text textColor>{t.do('movieDetail.emptyDetail')}</Text>
-          </View>
-        </ScrollView>
-      </View>
-    );
+    return <LoadingScreen />;
   }
 
   return (
     <View flex bg-bgColor>
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
+      <ScrollView
+        contentInsetAdjustmentBehavior="automatic"
+        refreshControl={<RefreshControl refreshing={movies.loading} onRefresh={getData} />}
+      >
         <View padding-s4>
-          <Image style={{height: 350}} source={{uri: currentMovieDetail.posterUrl}} resizeMode="contain" />
-          <View paddingV-s4>
-            <Text textColor text30>
-              {currentMovieDetail.title}
-            </Text>
-            <Text textColor text65>
-              {`${currentMovieDetail.year}, ${currentMovieDetail.duration} ${t.do('movieDetail.durationUnit')}`}
-            </Text>
-            <InfoItem label={t.do('movieDetail.genres')} value={currentMovieDetail.genres?.join(' / ')} />
-            <InfoItem label={t.do('movieDetail.directing')} value={currentMovieDetail.director} />
-            <InfoItem label={t.do('movieDetail.actors')} value={currentMovieDetail.actors} />
-            <InfoItem label={t.do('movieDetail.plot')} value={currentMovieDetail.plot} />
-          </View>
+          {!currentMovieDetail ? (
+            <View padding-s4>
+              <Text textColor>{t.do('movieDetail.emptyDetail')}</Text>
+            </View>
+          ) : (
+            <>
+              <Image style={{height: 350}} source={{uri: currentMovieDetail.posterUrl}} resizeMode="contain" />
+              <View paddingV-s4>
+                <Text textColor text30>
+                  {currentMovieDetail.title}
+                </Text>
+                <Text textColor text65>
+                  {`${currentMovieDetail.year}, ${currentMovieDetail.duration} ${t.do('movieDetail.durationUnit')}`}
+                </Text>
+                <InfoItem label={t.do('movieDetail.genres')} value={currentMovieDetail.genres?.join(' / ')} />
+                <InfoItem label={t.do('movieDetail.directing')} value={currentMovieDetail.director} />
+                <InfoItem label={t.do('movieDetail.actors')} value={currentMovieDetail.actors} />
+                <InfoItem label={t.do('movieDetail.plot')} value={currentMovieDetail.plot} />
+              </View>
+            </>
+          )}
         </View>
       </ScrollView>
     </View>
