@@ -33,6 +33,12 @@ export const Main: React.FC = observer(() => {
     return <LoadingScreen />;
   }
 
+  /*****************************************************************************
+   *
+   * Info: if there was more data to display (for example list of all movies), i would use a Flatlist
+   * instead of a Carousel and map function, because Flatlist is more efficient
+   *
+   ****************************************************************************/
   return (
     <View flex bg-bgColor>
       <ScrollView
