@@ -4,7 +4,7 @@ require_relative '../node_modules/@react-native-community/cli-platform-ios/nativ
 
 platform :ios, '12.0'
 
-target 'RNStarter' do
+target 'rnMovies' do
   use_expo_modules!
   post_integrate do |installer|
     expo_patch_react_imports!(installer)
@@ -17,7 +17,7 @@ target 'RNStarter' do
     :hermes_enabled => true
   )
 
-  target 'RNStarterTests' do
+  target 'rnMoviesTests' do
     inherit! :complete
     # Pods for testing
   end

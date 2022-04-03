@@ -18,7 +18,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "RNStarter";
+    return "rnMovies";
   }
 
   // For react-native-screens
