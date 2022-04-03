@@ -43,7 +43,7 @@ const screens: ScreenLayouts = {
     name: 'Settings',
     component: Settings,
     options: () => ({
-      title: 'Settings',
+      title: t.do('settings.title'),
     }),
   },
 };
@@ -64,7 +64,7 @@ const tabs: TabScreenLayouts = {
     name: 'SettingsNavigator',
     component: SettingsStack,
     options: () => ({
-      title: 'Settings',
+      title: t.do('settings.title'),
     }),
   },
 };

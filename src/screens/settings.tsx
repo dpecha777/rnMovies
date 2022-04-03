@@ -8,6 +8,7 @@ import {useStores} from '../stores';
 
 import {Section} from '../components/section';
 import {Action} from '../components/action';
+import {useServices} from '../services';
 
 type PickersStateKey = keyof Omit<PickersState, 'show' | 'hide'>;
 type PickersState = {
@@ -19,6 +20,7 @@ type PickersState = {
 };
 
 export const Settings: React.FC = observer(() => {
+  const {t} = useServices();
   const {ui} = useStores();
 
   const pickers: PickersState = useLocalObservable(() => ({
@@ -47,7 +49,7 @@ export const Settings: React.FC = observer(() => {
   const AppearanceActionSheet = useMemo(
     () => (
       <ActionSheet
-        title={'Appearance'}
+        title={t.do('settings.ui.appearance')}
         cancelButtonIndex={appearanceActions.length}
         useNativeIOS
         options={[
@@ -56,7 +58,7 @@ export const Settings: React.FC = observer(() => {
             onPress: appearancePickOption(action.name),
           })),
           {
-            label: 'Cancel',
+            label: t.do('general.cancel'),
           },
         ]}
         visible={pickers.appearance}
@@ -71,7 +73,7 @@ export const Settings: React.FC = observer(() => {
   const LanguageActionSheet = useMemo(
     () => (
       <ActionSheet
-        title={'Language'}
+        title={t.do('settings.ui.language')}
         cancelButtonIndex={languageActions.length}
         useNativeIOS
         options={[
@@ -80,7 +82,7 @@ export const Settings: React.FC = observer(() => {
             onPress: languagePickOption(action.name),
           })),
           {
-            label: 'Cancel',
+            label: t.do('general.cancel'),
           },
         ]}
         visible={pickers.language}
@@ -94,19 +96,19 @@ export const Settings: React.FC = observer(() => {
   const UINote = useMemo(
     () => (
       <View paddingH-s3 marginB-s4>
-        <Text grey40>Changing UI options will reload the app</Text>
+        <Text grey40>{t.do('settings.ui.uiNote')}</Text>
       </View>
     ),
-    [],
+    [t],
   );
 
   return (
     <View flex bg-bgColor>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <View padding-s4>
-          <Section bg title="UI">
+          <Section bg title={t.do('settings.ui.title')}>
             <Action
-              title="Appearance"
+              title={t.do('settings.ui.appearance')}
               info={ui.appearanceName}
               onPress={() => pickers.show('appearance')}
               rightIcon="chevron-forward"
@@ -114,7 +116,7 @@ export const Settings: React.FC = observer(() => {
             {AppearanceActionSheet}
 
             <Action
-              title="Language"
+              title={t.do('settings.ui.language')}
               info={ui.languageName}
               onPress={() => pickers.show('language')}
               rightIcon="chevron-forward"
@@ -123,10 +125,18 @@ export const Settings: React.FC = observer(() => {
           </Section>
           {UINote}
 
-          <Section bg title="About">
+          <Section bg title={t.do('settings.about.title')}>
             <View>
-              <Action disabled title="App name" info={Application.applicationName ?? 'No app name'} />
-              <Action disabled title="Version" info={Application.nativeApplicationVersion ?? '0.0'} />
+              <Action
+                disabled
+                title={t.do('settings.about.appName')}
+                info={Application.applicationName ?? 'No app name'}
+              />
+              <Action
+                disabled
+                title={t.do('settings.about.version')}
+                info={Application.nativeApplicationVersion ?? '0.0'}
+              />
             </View>
           </Section>
         </View>
