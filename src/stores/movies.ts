@@ -7,8 +7,8 @@ export class Movies implements IStore {
     this.carousels = items;
   };
 
-  currentMovieDetail = {} as Movie;
-  setCurrentMovieDetail = (item: Movie) => {
+  currentMovieDetail: Movie | null = null;
+  setCurrentMovieDetail = (item: Movie | null) => {
     this.currentMovieDetail = item;
   };
 
