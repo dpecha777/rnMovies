@@ -2,7 +2,7 @@
 
 rnMovies is a test project created in React Native for browsing a list of movies and display the detail page of selected movie.
 
-These screens shows what the application looks like:
+These screens show what the application looks like:
 
 <p float="left">
 <img src="https://github.com/dpecha777/rnMovies/blob/media/home-screen.png" alt="home screen" title="Home screen" height="450" /> 
