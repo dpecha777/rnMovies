@@ -23,11 +23,13 @@ export const Main: React.FC = observer(() => {
     }
   }, [api.movies, t]);
 
-  useFocusEffect(
-    useCallback(() => {
-      getCarousels();
-    }, [getCarousels]),
-  );
+  // use it if u want to refresh the data every time the screen is focused
+  //
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     getCarousels();
+  //   }, [getCarousels]),
+  // );
 
   if (movies.loading) {
     return <LoadingScreen />;
